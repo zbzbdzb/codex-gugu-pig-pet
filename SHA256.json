@@ -1,5 +1,5 @@
 {
-  "README.md": "d6a99ba092d55e47fb809859946d29a164d47c32ed1c6f67ff0adc56f3d843f3",
+  "README.md": "88f290f3efeef658c0baf3371671d13c33f3b888e9b48d9b99bdd9347002f88f",
   "install.ps1": "bc86e9a3ca6a5b9c582a0768d51ab5005ed0ff074edbc5189fff578d81cbe228",
   "安装.cmd": "82741085528e3002a695bd6ede2069bbd788b1b9fad0d13660de458d00f827a0",
   "preview.html": "3cfad6070fdd7c4f06a729851e60a5c36c6937efbe48acb9846d75377846b5e4",
@@ -9,9 +9,9 @@
   "TESTING.md": "0cc74ddd7777a85818f17818b44361beae0a9315726931100bd2b0335327e4f5",
   "animation.json": "8e7ec812c86f14ce0c9953a0a0f964c743fdd8822cf4e8b88fcfc6ce1610f533",
   "sources/manifest.json": "6dc96bf149ab741ebae2e9612b05e39b4c84f5547c5872cec0f17b5f2e617024",
-  "previews/all-actions.gif": "99e71b79a5f0d5fcd223fd7eaebd89a92313de9a8e144d6c002b68d6e7e54a20",
+  "previews/all-actions.gif": "b88c8cafe68613535677a9a740c6cfcac337868caa25a94bf76036b399a01cb7",
   "previews/directions.jpg": "c872e2596d7fdf54e03ff906106108c9893f36cbe315e2383519f286bfed8850",
-  "previews/cover.png": "aa68946fb2f35bcb5f7c5a1aec2668766145d6e8c1386d4a9cc085bc83286846",
+  "previews/cover.png": "a74bf61903bba265e04c0ee0209bfe1aace9b0c76d6cf7a498e35837db8db713",
   "dist/gugu-pig/pet.json": "7b4a91b769c5998832e49524bf6c36d2b068f48413d95ee8b47249d0b0b9a3f6",
   "dist/gugu-pig/spritesheet.webp": "f557be5cb943ce002258a750f52e435699a1a5aeb3280feb60085a0272b6b339",
   "dist/gugu-pig-v1/pet.json": "baaaffa41b45901145f0ee141359fd241e50f23c281e958a0e3824bd3a8fd24b",

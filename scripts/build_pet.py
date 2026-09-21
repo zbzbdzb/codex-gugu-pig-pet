@@ -103,9 +103,8 @@ for t in range(0,8400,70):
     for r in range(9):
         x=(r%3)*220; y=(r//3)*248
         d.rounded_rectangle((x+5,y+5,x+214,y+241),radius=14,fill='#242e3b')
-        d.text((x+16,y+15),LABELS[r],font=small,fill='#f4dfca')
         f=allframes[r][active_index(t,DURATIONS[r])]
-        board.paste(f,(x+14,y+32),f)
+        board.paste(f,(x+14,y+20),f)
     gallery.append(board)
 gallery[0].save(PRE/'all-actions.gif',save_all=True,append_images=gallery[1:],duration=70,loop=0,optimize=True)
 gallery[0].save(PRE/'cover.png')

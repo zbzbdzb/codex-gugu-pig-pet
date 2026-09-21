@@ -1,0 +1,101 @@
+[
+  {
+    "file": "快跑猪.gif",
+    "source": "https://pighub.top/images/%E5%BF%AB%E8%B7%91%E7%8C%AA.gif",
+    "use": "motion/expression reference; redraw in pixel style",
+    "size": [
+      861,
+      609
+    ],
+    "frames": 276,
+    "sha256": "4a5e7945aec901e59de2cc22f2cdad34d606bc0591e5674558942432cd9f01ae"
+  },
+  {
+    "file": "咕咕猪干活.jpg",
+    "source": "https://pighub.top/images/%E5%92%95%E5%92%95%E7%8C%AA%E5%B9%B2%E6%B4%BB.jpg",
+    "use": "motion/expression reference; redraw in pixel style",
+    "size": [
+      1280,
+      880
+    ],
+    "frames": 1,
+    "sha256": "71429d75168fe0dea8d1425df182002b5ba62311878c10d319ac1c7f3b530c1b"
+  },
+  {
+    "file": "猪瞌睡.jpg",
+    "source": "https://pighub.top/images/%E7%8C%AA%E7%9E%8C%E7%9D%A1.jpg",
+    "use": "motion/expression reference; redraw in pixel style",
+    "size": [
+      1012,
+      1024
+    ],
+    "frames": 1,
+    "sha256": "1939b0a20633ebc46313d6d3234f208c83e8c623f9972db58597b77b0b9a428b"
+  },
+  {
+    "file": "疑惑猪.png",
+    "source": "https://pighub.top/images/%E7%96%91%E6%83%91%E7%8C%AA.png",
+    "use": "motion/expression reference; redraw in pixel style",
+    "size": [
+      548,
+      554
+    ],
+    "frames": 1,
+    "sha256": "43728366b9f22da1284052328283d208733114841e3995e2e62d5535b59c0207"
+  },
+  {
+    "file": "猪开心.jpg",
+    "source": "https://pighub.top/images/%E7%8C%AA%E5%BC%80%E5%BF%83.jpg",
+    "use": "motion/expression reference; redraw in pixel style",
+    "size": [
+      1012,
+      1024
+    ],
+    "frames": 1,
+    "sha256": "47d633be3e1b19332fc9b8cc2eb826007d3e1d1a9455e1da03914f755e5ca148"
+  },
+  {
+    "file": "像素猪.gif",
+    "source": "User-provided reference asset",
+    "use": "primary identity",
+    "size": [
+      400,
+      350
+    ],
+    "frames": 8,
+    "sha256": "ce45538ac0f089997ba356370db759498fb072637e1c79d5194ed83e06c69dda"
+  },
+  {
+    "file": "跳跳猪.gif",
+    "source": "User-provided reference asset",
+    "use": "motion/expression reference",
+    "size": [
+      300,
+      130
+    ],
+    "frames": 90,
+    "sha256": "05482fdd45517fa2e3203a62376a9acdb11efcf49a80c50ea97f8c0cb49ae920"
+  },
+  {
+    "file": "哭哭猪.jpg",
+    "source": "User-provided reference asset",
+    "use": "motion/expression reference",
+    "size": [
+      2048,
+      2048
+    ],
+    "frames": 1,
+    "sha256": "45203c7fe2f9f9da517282cc7e757c4948b8c65799822dbde5b859987b9fcf46"
+  },
+  {
+    "file": "你已笨哭猪.jpg",
+    "source": "User-provided reference asset",
+    "use": "motion/expression reference",
+    "size": [
+      1280,
+      1234
+    ],
+    "frames": 1,
+    "sha256": "de1e373c6d7d95f107b5b75d09eb2192967190db65d8b8eedcff2ed9ddfc6d1e"
+  }
+]

@@ -1,0 +1,27 @@
+# Local iteration history and unused source studies
+/backups/
+/generated/
+/frames/
+/sources/*
+!/sources/像素猪.gif
+!/sources/manifest.json
+/scripts/inspect_app_contract.py
+/scripts/prepare_sources.py
+
+# Only final previews belong in the repository
+/previews/*
+!/previews/all-actions.gif
+!/previews/cover.png
+!/previews/directions.jpg
+!/previews/contact-sheet.jpg
+
+# Release archives are attached to GitHub Releases
+/*.zip
+/.test-output/
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+Thumbs.db
+.env
+.env.*

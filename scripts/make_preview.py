@@ -1,0 +1,38 @@
+from pathlib import Path
+import base64,json
+ROOT=Path(__file__).resolve().parents[1]
+data=json.loads((ROOT/'animation.json').read_text(encoding='utf8'))
+sprite=base64.b64encode((ROOT/'dist/gugu-pig/spritesheet.webp').read_bytes()).decode()
+html='''<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>咕咕猪 · 像素搭子</title>
+<style>
+:root{color-scheme:dark;--bg:#121923;--card:#1c2632;--ink:#f4e9dd;--muted:#aeb9c7;--line:#35414e;--accent:#ffb498}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.7 system-ui,"Microsoft YaHei",sans-serif}body.light{color-scheme:light;--bg:#f5f0e8;--card:#fffcf6;--ink:#342925;--muted:#756c65;--line:#dfd4c7;--accent:#a9432c}main{max-width:1100px;margin:auto;padding:38px 28px}header{display:flex;justify-content:space-between;gap:20px;align-items:start}h1{margin:0;font-size:42px;letter-spacing:-2px}h2{font-size:22px;margin:30px 0 12px}.eyebrow{color:var(--accent);font-size:12px;letter-spacing:3px}p{color:var(--muted);margin:8px 0 20px}button,a.pill{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:9px 14px;text-decoration:none}button:hover,button.active{border-color:var(--accent);color:var(--accent)}button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.stage{position:relative;min-height:390px;margin:26px 0 16px;background:var(--card);border:1px solid var(--line);border-radius:25px;display:flex;align-items:center;justify-content:center;overflow:hidden}.hero{width:384px;height:416px;image-rendering:pixelated}.badge{position:absolute;top:18px;left:22px;color:var(--muted);font-size:13px}.hint{position:absolute;bottom:15px;left:0;right:0;text-align:center;font-size:12px;color:var(--muted)}.controls{display:flex;gap:8px;flex-wrap:wrap}.controls button[aria-pressed=true]{background:var(--accent);color:var(--bg);border-color:var(--accent)}.playback{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:15px}.playback span{font-size:12px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.tile{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;align-items:center;flex-direction:column}.tile h3{align-self:flex-start;margin:0;font-size:14px;font-weight:500}.tile canvas{width:192px;height:208px;max-width:100%;image-rendering:pixelated}.footer{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}a{color:var(--accent)}@media(max-width:650px){main{padding:24px 16px}h1{font-size:34px}.grid{grid-template-columns:repeat(2,1fr)}.stage{min-height:340px}.hero{width:288px;height:312px}.tile{padding:10px}.tile canvas{width:144px;height:156px}}@media(prefers-reduced-motion:reduce){.hero,canvas{scroll-behavior:auto}}
+</style>
+<main><header><div><div class="eyebrow">GUGU PIG · PIXEL COMPANION</div><h1>咕咕猪，来上班。</h1><p>没事睡个小觉，有事认真干活。</p></div><button id="theme" aria-label="切换深浅背景">浅色背景</button></header>
+<div class="stage" id="stage"><span class="badge" id="status">待机</span><canvas class="hero" id="hero" width="192" height="208" aria-label="咕咕猪当前动作"></canvas><span class="hint" id="hint">选择一个动作，看看小猪怎么回应。</span></div>
+<nav class="controls" id="actions" aria-label="选择动作"></nav>
+<div class="playback"><button id="pause">暂停</button><button id="step">下一帧</button><button id="look" aria-pressed="false">跟随鼠标</button><span id="frameCount"></span></div>
+<h2>它的九种小心情</h2><p>原版像素步态，闭眼睡觉；哭哭没有笑眼，检查时双眼一起眨。</p><div class="grid" id="grid"></div>
+<div class="footer">已准备 9 类动作和 16 个观察方向。预览循环播放所选动作；Codex 会按实际任务状态决定何时触发。<br><a href="README.md">制作与安装说明</a> · <a href="previews/all-actions.gif">动画总览</a> · <a href="previews/directions.jpg">方向预览</a></div></main>
+<script>
+const DATA=__DATA__;
+const image=new Image();image.src='data:image/webp;base64,__SPRITE__';
+const hero=document.getElementById('hero'),ctx=hero.getContext('2d');ctx.imageSmoothingEnabled=false;
+const simple=['睡觉','向右跑','向左跑','动动耳朵','跳跃','哭哭','等你回应','敲电脑','检查清单'];
+let state=0,start=performance.now(),paused=matchMedia('(prefers-reduced-motion: reduce)').matches,held=0,looking=false,lookIndex=null;
+const canvases=[];const actions=document.getElementById('actions');
+function draw(context,row,col){context.clearRect(0,0,192,208);context.drawImage(image,col*192,row*208,192,208,0,0,192,208)}
+function indexAt(t,ds){let rem=((t%ds.reduce((a,b)=>a+b,0))+ds.reduce((a,b)=>a+b,0))%ds.reduce((a,b)=>a+b,0);for(let i=0;i<ds.length;i++){if(rem<ds[i])return i;rem-=ds[i]}return 0}
+simple.forEach((name,i)=>{const b=document.createElement('button');b.textContent=name;b.setAttribute('aria-pressed',i===0);b.onclick=()=>{state=i;start=performance.now();held=0;looking=false;lookIndex=null;document.getElementById('look').setAttribute('aria-pressed','false');[...actions.children].forEach((el,j)=>el.setAttribute('aria-pressed',j===i));document.getElementById('status').textContent=name;document.getElementById('hint').textContent='选择一个动作，看看小猪怎么回应。'};actions.append(b);const tile=document.createElement('article');tile.className='tile';const title=document.createElement('h3');title.textContent=DATA.labels[i];tile.append(title);const c=document.createElement('canvas');c.width=192;c.height=208;c.setAttribute('aria-label',name+'动画');tile.append(c);document.getElementById('grid').append(tile);canvases.push(c.getContext('2d'))});
+function updatePause(){document.getElementById('pause').textContent=paused?'继续播放':'暂停'}updatePause();
+document.getElementById('pause').onclick=()=>{const now=performance.now();if(!paused)held=now-start;else start=now-held;paused=!paused;updatePause()};
+document.getElementById('step').onclick=()=>{if(!paused)held=performance.now()-start;paused=true;updatePause();const ds=DATA.durations[state];const next=(indexAt(held,ds)+1)%ds.length;held=ds.slice(0,next).reduce((a,b)=>a+b,0);looking=false;lookIndex=null;document.getElementById('look').setAttribute('aria-pressed','false')};
+document.getElementById('theme').onclick=()=>{const light=document.body.classList.toggle('light');document.getElementById('theme').textContent=light?'深色背景':'浅色背景'};
+document.getElementById('look').onclick=()=>{looking=!looking;lookIndex=null;document.getElementById('look').setAttribute('aria-pressed',looking);document.getElementById('hint').textContent=looking?'在小猪四周移动鼠标，试试它的视线。':'选择一个动作，看看小猪怎么回应。';document.getElementById('status').textContent=looking?'等你看过来':simple[state]};
+document.getElementById('stage').onpointermove=e=>{if(!looking)return;const r=hero.getBoundingClientRect(),x=e.clientX-(r.left+r.width/2),y=e.clientY-(r.top+r.height/2);lookIndex=Math.hypot(x,y)<20?null:Math.round(((Math.atan2(x,-y)*180/Math.PI+360)%360)/22.5)%16};
+document.getElementById('stage').onpointerleave=()=>lookIndex=null;
+function tick(now){if(image.complete&&image.naturalWidth){const t=paused?held:now-start;const idx=indexAt(t,DATA.durations[state]);if(looking&&lookIndex!==null){draw(ctx,9+Math.floor(lookIndex/8),lookIndex%8);document.getElementById('frameCount').textContent=`观察方向 ${lookIndex*22.5}°`}else{draw(ctx,state,idx);document.getElementById('frameCount').textContent=`${simple[state]} · ${idx+1} / ${DATA.counts[state]} 帧`}canvases.forEach((c,i)=>draw(c,i,indexAt(t,DATA.durations[i])))}requestAnimationFrame(tick)}requestAnimationFrame(tick);
+</script></html>'''
+html=html.replace('__DATA__',json.dumps(data,ensure_ascii=False)).replace('__SPRITE__',sprite)
+(ROOT/'preview.html').write_text(html,encoding='utf-8')
+print('Standalone offline preview generated:',ROOT/'preview.html')

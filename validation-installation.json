@@ -1,0 +1,13 @@
+{
+  "platform": "Windows",
+  "checks": {
+    "dryRunDoesNotWrite": true,
+    "freshInstallMatchesPackage": true,
+    "repeatInstallIsIdempotent": true,
+    "differentPackageRequiresUpdate": true,
+    "updateDryRunPreservesInstalledFiles": true,
+    "updateBacksUpExactPreviousPackage": true,
+    "differentPetIdentityIsNeverOverwritten": true,
+    "legacyInstallMatchesPackage": true
+  }
+}

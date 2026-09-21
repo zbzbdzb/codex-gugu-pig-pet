@@ -1,0 +1,12 @@
+{
+  "noseMasterMatchesSource": true,
+  "tailMasterMatchesSource": true,
+  "earMasterMatchesSource": true,
+  "frontAndMiddleLegsMasterMatchesSource": true,
+  "all57EditedPosesKeepOriginalNoseAndTail": true,
+  "earPreservedExceptIntentionalTwitch": true,
+  "eyeSizeIsOriginal2x2": true,
+  "noGeneratedSpritesConsumed": true,
+  "reviewChangesOnlyBothEyeRegions": true,
+  "stationaryLegsMatchMaster": true
+}
